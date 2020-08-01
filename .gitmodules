@@ -1,0 +1,3 @@
+[submodule "client"]
+	path = client
+	url = https://github.com/abiodunolunu/my-picture-app-mini-IG--client
