@@ -1,0 +1,8 @@
+client
+config
+config.js
+public
+node_modules
+.env.local
+.env.*.local
+.idea

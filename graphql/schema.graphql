@@ -1,0 +1,72 @@
+type User {
+  _id: ID!
+  firstname: String!
+  lastname: String!
+  email: String!
+  username: String
+  friends: [User!]!
+  friendRequests: [User!]!
+}
+
+type Post {
+  _id: ID!
+  caption: String!
+  imageUrl: String!
+  imagePublicId: String!
+  likes: [User!]
+  createdAt: String!
+  updatedAt: String!
+  owner: User
+  comments: [Comment]
+  newestComment: Comment
+}
+
+type Comment {
+_id: ID
+  author: User
+  post: Post
+  text: String
+  createdAt: String
+}
+
+input UserInputData {
+  firstname: String!
+  lastname: String!
+  email: String!
+  password: String!
+  confirmPassword: String!
+}
+
+type AuthData {
+  token: String
+  user: User
+}
+
+type AllPostData {
+  posts: [Post!]
+}
+
+type singlePostData {
+    post: Post
+    comments: [Comment]
+}
+
+type RootQuery {
+  hello: String!
+  login(email: String!, password: String!): AuthData
+  getPosts: AllPostData
+  getSinglePost(postId: String!): singlePostData
+}
+
+type RootMutation {
+  createUser(userInput: UserInputData): User
+  createPost(imageUrl: String!, imagePublicId: String, caption: String!): Post
+  createComment(postId: String, text: String, author: String): Comment
+  likeAPost(postId: String): Post
+  deleteAPost(postId: String): Post
+}
+
+schema {
+  query: RootQuery
+  mutation: RootMutation
+}
